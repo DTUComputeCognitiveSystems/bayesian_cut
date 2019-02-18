@@ -16,12 +16,12 @@ class RatioCut(base_class):
     Model settings
     --------------
 
-    X : sparse scipy adjacency matrix of size NxN
+    X : sparse scipy adjacency matrix of size nxn
 
     Model attributes after running
     ------------------------------
 
-    z_ : numpy array, group assignment vector of size N
+    z_ : numpy array, group assignment vector of size n
 
     Reference:
     Von Luxburg, Ulrike. "A tutorial on spectral clustering." Statistics and computing 17.4 (2007): 395-416.
@@ -49,12 +49,12 @@ class RatioCut(base_class):
             X[lower_indices] = 0
             X = X + X.T
 
-        D = np.diagflat(np.sum(X, axis=0))  # degree matrix NxN
+        D = np.diagflat(np.sum(X, axis=0))  # degree matrix nxn
         L = D - X  # unnormalized Laplacian
         k = 2  # simplified problem with k set to 2
         (eigvals, eigvects) = np.linalg.eigh(L)  # eigenvectors and coresponding eigenvalues of L
         U = eigvects[:, eigvals.argsort()][:, 0:k]
-        RR = KMeans(n_clusters=k).fit(U)  # clustering rows of U (Nxk matrix) having eigenvectors in columns
+        RR = KMeans(n_clusters=k).fit(U)  # clustering rows of U (nxk matrix) having eigenvectors in columns
         self.z_ = RR.predict(U)
 
 
@@ -65,12 +65,12 @@ class NormCutSM(base_class):
     Model settings
     --------------
 
-    X : sparse scipy adjacency matrix of size NxN
+    X : sparse scipy adjacency matrix of size nxn
 
     Model attributes after running
     ------------------------------
 
-    z_ : numpy array, group assignment vector of size N
+    z_ : numpy array, group assignment vector of size n
 
     Reference:
     Von Luxburg, Ulrike. "A tutorial on spectral clustering." Statistics and computing 17.4 (2007): 395-416.
@@ -98,14 +98,14 @@ class NormCutSM(base_class):
             X[lower_indices] = 0
             X = X + X.T
 
-        D = np.diagflat(np.sum(X, axis=1))  # degree matrix NxN
+        D = np.diagflat(np.sum(X, axis=1))  # degree matrix nxn
         L = D - X  # unnormalized Laplacian
 
         k = 2  # simplified problem with k set to 2
         (eigvals, eigvects) = sc.linalg.eigh(a=L, b=D)
         # eigenvectors and coresponding eigenvalues of generalized eigenproblem Lu=lambdaDu
         U = eigvects[:, eigvals.argsort()][:, 0:k]
-        RR = KMeans(n_clusters=k).fit(U)  # clustering rows of U (Nxk matrix) having eigenvectors in columns
+        RR = KMeans(n_clusters=k).fit(U)  # clustering rows of U (nxk matrix) having eigenvectors in columns
         self.z_ = RR.predict(U)
 
 
@@ -116,12 +116,12 @@ class NormCutNJW(base_class):
     Model settings
     --------------
 
-    X : sparse scipy adjacency matrix of size NxN
+    X : sparse scipy adjacency matrix of size nxn
 
     Model attributes after running
     ------------------------------
 
-    z_ : numpy array, group assignment vector of size N
+    z_ : numpy array, group assignment vector of size n
 
     Reference:
     Von Luxburg, Ulrike. "A tutorial on spectral clustering." Statistics and computing 17.4 (2007): 395-416.
@@ -148,7 +148,7 @@ class NormCutNJW(base_class):
             lower_indices = np.tril_indices(X.shape[0], 0)
             X[lower_indices] = 0
             X = X + X.T
-        D = np.diagflat(np.sum(X, axis=1))  # degree matrix NxN
+        D = np.diagflat(np.sum(X, axis=1))  # degree matrix nxn
         D1_2 = np.linalg.cholesky(np.linalg.inv(D))
         L = np.matlib.eye(X.shape[0]) - np.dot(np.dot(D1_2, X), D1_2)  # symetric Laplacian
 
@@ -158,7 +158,7 @@ class NormCutNJW(base_class):
         Uu = np.matrix(np.sqrt(np.sum(np.power(U, 2), axis=1)))
         T = np.multiply(U, (1 / Uu).T)
         # check of the norm equals one: np.sqrt(np.sum(np.power(T,2),axis=1))
-        RR = KMeans(n_clusters=k).fit(T)  # clustering rows of U (Nxk matrix) having eigenvectors in columns
+        RR = KMeans(n_clusters=k).fit(T)  # clustering rows of U (nxk matrix) having eigenvectors in columns
         self.z_ = RR.predict(T)
 
 
@@ -169,12 +169,12 @@ class NewmanModularityCut(base_class):
     Model settings
     --------------
 
-    X : sparse scipy adjacency matrix of size NxN
+    X : sparse scipy adjacency matrix of size nxn
 
     Model attributes after running
     ------------------------------
 
-    z_ : numpy array, group assignment vector of size N
+    z_ : numpy array, group assignment vector of size n
 
     Reference:
     Newman, M. E. J. “Modularity and Community Structure in Networks.” Proceedings of the National Academy of
