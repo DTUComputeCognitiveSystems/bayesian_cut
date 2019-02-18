@@ -1,3 +1,13 @@
+#!/usr/bin/env python3
+#
+# -*- coding: utf-8 -*-
+#
+# Author:   Laurent Vermue <lauve@dtu.dk>
+#           Maciej Korzepa <mjko@dtu.dk>
+#           Petr Taborsky <ptab@dtu.dk>
+#
+# License: 3-clause BSD
+
 import scipy as sc
 from sklearn.cluster import KMeans
 from numpy.linalg import eigh
