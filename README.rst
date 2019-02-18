@@ -25,7 +25,7 @@ Installation
    | ``$ pip install bayesian_cut``
 
 -  | Now you can import the bayesian cut class by typing
-   | ``from bayesian_cut.Cuts import Model``
+   | ``from bayesian_cut.cuts import Model``
 
 Quick Start
 -----------
@@ -37,7 +37,7 @@ Use the bayesian_cut package for performing graph cuts
 
    # Load the package
    from bayesian_cut.data.load import load_data
-   from bayesian_cut.Cuts.bayesian_models import Model
+   from bayesian_cut.cuts.bayesian_models import Model
 
    # Load an example network
    network_name = 'karate'
@@ -81,7 +81,7 @@ Use the bayesian_cut package for performing graph cuts
    graph_cut_z_vector = BC.get_best_chain().max_log_lik_z_
 
    # Plot the cut as an adjacency matrix
-   from bayesian_cut.Utils import utils
+   from bayesian_cut.utils import utils
    utils.Cluster_plot(BC)
 
    # Done

@@ -21,7 +21,7 @@ class base_class(object):
 
 class RatioCut(base_class):
     """
-    Cuts a graph with the RatioCut method using its adjacency matrix X of size nxn
+    cuts a graph with the RatioCut method using its adjacency matrix X of size nxn
 
     Model settings
     --------------
@@ -72,7 +72,7 @@ class RatioCut(base_class):
 
 class NormCutSM(base_class):
     """
-    Cuts a graph with the NormCut method by Shi and Malik method using its adjacency matrix X of size nxn
+    cuts a graph with the NormCut method by Shi and Malik method using its adjacency matrix X of size nxn
 
     Model settings
     --------------
@@ -125,7 +125,7 @@ class NormCutSM(base_class):
 
 class NormCutNJW(base_class):
     """
-    Cuts a graph with the NormCut method by NG, Jordan and Weiss using its adjacency matrix X of size nxn
+    cuts a graph with the NormCut method by NG, Jordan and Weiss using its adjacency matrix X of size nxn
 
     Model settings
     --------------
@@ -180,7 +180,7 @@ class NormCutNJW(base_class):
 
 class NewmanModularityCut(base_class):
     """
-    Cuts a graph with the spectral modularity optimization method by Newman using its adjacency matrix X of size nxn
+    cuts a graph with the spectral modularity optimization method by Newman using its adjacency matrix X of size nxn
 
     Model settings
     --------------
