@@ -11,17 +11,19 @@ class base_class(object):
 
 class RatioCut(base_class):
     """
-    Cuts a graph with the RatioCut method using its adjacency matrix X
+    Cuts a graph with the RatioCut method using its adjacency matrix X of size nxn
 
     Model settings
     --------------
 
-    X : sparse scipy adjacency matrix of size nxn
+    X : sparse scipy matrix, shape(n, n)
+        Adjacency matrix
 
     Model attributes after running
     ------------------------------
 
-    z_ : numpy array, group assignment vector of size n
+    z_ : numpy array, shape(n,)
+        Group assignment vector
 
     Reference:
     Von Luxburg, Ulrike. "A tutorial on spectral clustering." Statistics and computing 17.4 (2007): 395-416.
@@ -60,17 +62,19 @@ class RatioCut(base_class):
 
 class NormCutSM(base_class):
     """
-    Cuts a graph with the NormCut method by Shi and Malik method using its adjacency matrix X
+    Cuts a graph with the NormCut method by Shi and Malik method using its adjacency matrix X of size nxn
 
     Model settings
     --------------
 
-    X : sparse scipy adjacency matrix of size nxn
+    X : sparse scipy matrix, shape(n, n)
+        Adjacency matrix
 
     Model attributes after running
     ------------------------------
 
-    z_ : numpy array, group assignment vector of size n
+    z_ : numpy array, shape(n,)
+        Group assignment vector
 
     Reference:
     Von Luxburg, Ulrike. "A tutorial on spectral clustering." Statistics and computing 17.4 (2007): 395-416.
@@ -111,17 +115,19 @@ class NormCutSM(base_class):
 
 class NormCutNJW(base_class):
     """
-    Cuts a graph with the NormCut method by NG, Jordan and Weiss using its adjacency matrix X
+    Cuts a graph with the NormCut method by NG, Jordan and Weiss using its adjacency matrix X of size nxn
 
     Model settings
     --------------
 
-    X : sparse scipy adjacency matrix of size nxn
+    X : sparse scipy matrix, shape(n, n)
+        Adjacency matrix
 
     Model attributes after running
     ------------------------------
 
-    z_ : numpy array, group assignment vector of size n
+    z_ : numpy array, shape(n,)
+        Group assignment vector
 
     Reference:
     Von Luxburg, Ulrike. "A tutorial on spectral clustering." Statistics and computing 17.4 (2007): 395-416.
@@ -164,17 +170,19 @@ class NormCutNJW(base_class):
 
 class NewmanModularityCut(base_class):
     """
-    Cuts a graph with the spectral modularity optimization method by Newman using its adjacency matrix X
+    Cuts a graph with the spectral modularity optimization method by Newman using its adjacency matrix X of size nxn
 
     Model settings
     --------------
 
-    X : sparse scipy adjacency matrix of size nxn
+    X : sparse scipy matrix, shape(n, n)
+        Adjacency matrix
 
     Model attributes after running
     ------------------------------
 
-    z_ : numpy array, group assignment vector of size n
+    z_ : numpy array, shape(n,)
+        Group assignment vector
 
     Reference:
     Newman, M. E. J. “Modularity and Community Structure in Networks.” Proceedings of the National Academy of
