@@ -4,9 +4,13 @@ from scipy.io import loadmat
 from scipy.sparse.csgraph import connected_components
 import scipy.sparse as sp
 import networkx as nx
+import time
+from urllib.request import urlretrieve
+
+GITHUB_DATADIR = 'https://github.com/DTUComputeCognitiveSystems/bayesian_cut/raw/master/bayesian_cut/data'
 
 
-def load_data(network='karate', labels=False, remove_disconnected=False, get_gml=False):
+def load_data(network='karate', labels=True, remove_disconnected=False, get_gml=False):
     """
     This function load the requested network as sparse scipy matrix and returns it together
     with the cluster labels, if these were requested
@@ -22,10 +26,17 @@ def load_data(network='karate', labels=False, remove_disconnected=False, get_gml
     ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
     Y = None
 
-    try:
-        filetype = glob.glob(os.path.join(ROOT_PATH, network) + '.*')[0].split('.')[1]
-    except:
-        print("The requested network could not be found")
+    # try:
+    #     filetype = glob.glob(os.path.join(ROOT_PATH, network) + '.*')[0].split('.')[1]
+    # except:
+    #     print("The requested network could not be found")
+    #     return None, None
+    
+    filetype: str = 'mat' if network == 'karate' else 'gml'
+    abs_file_path = os.path.join(ROOT_PATH, '{0}.{1}'.format(network, filetype))
+
+    if file_checker('{0}.{1}'.format(network, filetype), abs_file_path, GITHUB_DATADIR) != 0:
+        print('File {0}.{1} was not available and could not be downloaded'.format(network, filetype))
         return None, None
 
     if filetype == 'mat':
@@ -89,3 +100,32 @@ def load_data(network='karate', labels=False, remove_disconnected=False, get_gml
         if filetype == 'gml':
             X = nx.to_scipy_sparse_matrix(G, nodelist=nodes)
         return X, Y
+
+def file_checker(file, abs_file_path, github_dir):
+    if os.path.isfile(abs_file_path):
+        pass
+    else: #Download the file from the github repository
+        url = '{0}/{1}'.format(github_dir, file)
+        print('File not available locally. Trying to download file {0} from github repository.\n Link: {1}'
+              .format(file, url))
+        try:
+            urlretrieve(url, abs_file_path, reporthook)
+        except:
+            print("The file could not be downloaded. Please check your internet connection.")
+            return 1
+    return 0
+
+# From https://blog.shichao.io/2012/10/04/progress_speed_indicator_for_urlretrieve_in_python.html
+def reporthook(count, block_size, total_size):
+    global start_time
+    if count == 0:
+        start_time = time.time()
+        return
+    duration = time.time() - start_time
+    progress_size = int(count * block_size)
+    # Adding small value for duration, to avoid division by zero
+    speed = int(progress_size / (1024 * duration + 0.00001))
+    percent = min(int(count*block_size*100/total_size), 100)
+    sys.stdout.write("\r...%d%%, %d MB, %d KB/s, %d seconds passed\n" %
+                    (percent, progress_size / (1024 * 1024), speed, duration))
+    sys.stdout.flush()
