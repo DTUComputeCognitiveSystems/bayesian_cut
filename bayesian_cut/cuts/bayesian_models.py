@@ -5,6 +5,7 @@
 # Author:   Maciej Korzepa <mjko@dtu.dk>
 #           Laurent Vermue <lauve@dtu.dk>
 #           Petr Taborsky <ptab@dtu.dk>
+#           Morten Mørup <mmor@dtu.dk>
 #
 # License: 3-clause BSD
 

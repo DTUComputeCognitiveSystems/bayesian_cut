@@ -1,3 +1,13 @@
+#!/usr/bin/env python3
+#
+# -*- coding: utf-8 -*-
+#
+# Author:   Maciej Korzepa <mjko@dtu.dk>
+#           Laurent Vermue <lauve@dtu.dk>
+#           Petr Taborsky <ptab@dtu.dk>
+#
+# License: 3-clause BSD
+
 import numpy as np
 import glob, os
 from scipy.io import loadmat
