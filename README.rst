@@ -15,6 +15,9 @@ Furthermore it provides modularity, ratio-cut and norm cut based spectral networ
 It also provides a rich visualization library that allow an easy analysis of posterior solution landscapes and network
 cuts obtained by the various methods.
 
+Jupyter Notebooks with examples on how to use the package can be found at
+https://github.com/DTUComputeCognitiveSystems/bayesian_cut/tree/master/examples
+
 
 Installation
 ------------
