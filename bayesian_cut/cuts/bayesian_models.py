@@ -1244,7 +1244,7 @@ class Model(object):
         chain_max_log = []
         # highest likelihood
         for chain in self.chains:
-            chain_max_log.append(chain.max_log_lik)
+            chain_max_log.append(chain.max_log_lik_)
 
         best_chain_index = np.argmax(chain_max_log)
         return self.chains[best_chain_index]

@@ -6,6 +6,7 @@ import scipy.sparse as sp
 import networkx as nx
 import time
 from urllib.request import urlretrieve
+import sys
 
 GITHUB_DATADIR = 'https://github.com/DTUComputeCognitiveSystems/bayesian_cut/raw/master/bayesian_cut/data'
 
