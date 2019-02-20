@@ -19,6 +19,5 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
       ;;
   esac
   source activate testenvironment;
-  conda install pytest;
   conda install pip;
 fi
