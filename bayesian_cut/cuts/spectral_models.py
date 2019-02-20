@@ -233,5 +233,5 @@ class NewmanModularityCut(base_class):
         self.z_[z_ >= 0] = 1
         self.z_[z_ < 0] = -1
         modularity = (1/(4*m)) * self.z_.T.dot(B).dot(self.z_)
-        print("Modularity of method Newman Cut: {:.4f}".format(modularity))
+        # print("Modularity of method Newman Cut: {:.4f}".format(modularity))
         self.z_[z_ < 0] = 0
