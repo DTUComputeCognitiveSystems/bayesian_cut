@@ -234,6 +234,7 @@ def landscape_plotting(sim_matrix, log_prob_matrix, z_solutions=None, z_matrix=N
 
     plotly.offline.plot(fig, filename=filename, auto_open=open_plot, config={'showSendToCloud': True, 'showLink': True})
 
+
 def landscape_plotting_notebook(sim_matrix, log_prob_matrix, z_solutions=None, z_matrix=None, draw_contours=False,
                        title='Solution landscape', z_title='z', gaussian_sigma=None, res=500j, verbose=False):
     if z_solutions is not None and z_matrix is None:
@@ -352,6 +353,7 @@ def landscape_plotting_notebook(sim_matrix, log_prob_matrix, z_solutions=None, z
 
     plotly.offline.iplot(fig)
 
+
 def trace_plot(model, show_burn_in=False, model_names=None, title=None, legend=False):
     plt.figure(figsize=(10, 6))
     color_list = ['b', 'r', 'g', 'c', 'm', 'k', 'y']
@@ -433,7 +435,7 @@ def calc_modularity_scores(z_matrix, adjacency_matrix):
 
 
 def calc_ratiocut_scores(z_matrix, adjacency_matrix):
-    if len(z_matrix.shape)==1:
+    if len(z_matrix.shape) == 1:
         z_matrix = z_matrix.reshape(1, -1)
     adjacency_matrix = adjacency_matrix.todense()
     np.fill_diagonal(adjacency_matrix, 0)
@@ -453,7 +455,7 @@ def calc_ratiocut_scores(z_matrix, adjacency_matrix):
 
 
 def calc_normcut_scores(z_matrix, adjacency_matrix):
-    if len(z_matrix.shape)==1:
+    if len(z_matrix.shape) == 1:
         z_matrix = z_matrix.reshape(1, -1)
     adjacency_matrix = adjacency_matrix.todense()
     np.fill_diagonal(adjacency_matrix, 0)
