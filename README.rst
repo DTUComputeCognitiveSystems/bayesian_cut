@@ -7,6 +7,9 @@ Bayesian Cut Package
 .. image:: https://img.shields.io/pypi/l/bayesian_cut.svg
     :target: https://pypi.python.org/pypi/mbpls/
     :alt: License
+.. image:: https://travis-ci.com/DTUComputeCognitiveSystems/bayesian_cut.svg?branch=master
+   :target: https://travis-ci.com/DTUComputeCognitiveSystems/bayesian_cut
+   :alt: Build Status
 
 The Bayesian Cut Python package provides an easy to use API for the straight-forward application of Bayesian network
 cuts using a full Bayesian inference framework based on the Gibbs-Sampler using the degree corrected Stochastic
