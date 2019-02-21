@@ -14,8 +14,6 @@ rand_seed = 25
 # initialize
 import numpy as np
 import os
-
-print(os.getcwd())
 from . import load_data
 
 if __name__ == '__main__':
@@ -165,19 +163,19 @@ def test_ModCut():
 def test_RatioCut_Costfunction():
     from bayesian_cut.utils.utils import calc_ratiocut_scores
     scores = calc_ratiocut_scores(unique_samples, X)
-    assert (np.array_equal(scores, unique_samples_eval_RatioCut))
+    assert (np.allclose(scores, unique_samples_eval_RatioCut, rtol=1.e-10, atol=1.e-10))
 
 
 def test_NormCut_Costfunction():
     from bayesian_cut.utils.utils import calc_normcut_scores
     scores = calc_normcut_scores(unique_samples, X)
-    assert (np.array_equal(scores, unique_samples_eval_NormCut))
+    assert (np.allclose(scores, unique_samples_eval_NormCut, rtol=1.e-10, atol=1.e-10))
 
 
 def test_ModCut_Utilityfunction():
     from bayesian_cut.utils.utils import calc_modularity_scores
     scores = calc_modularity_scores(unique_samples, X)
-    assert (np.array_equal(scores, unique_samples_eval_ModCut))
+    assert (np.allclose(scores, unique_samples_eval_ModCut, rtol=1.e-10, atol=1.e-10))
 
 
 def test_BC_likelihood():
