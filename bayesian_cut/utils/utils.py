@@ -15,9 +15,7 @@ import numpy as np
 import plotly
 import plotly.graph_objs as go
 import scipy.sparse as sp
-import seaborn as sb
 from joblib import Parallel, delayed
-from mpl_toolkits.axes_grid1 import make_axes_locatable
 from scipy.interpolate import griddata
 from scipy.ndimage import gaussian_filter
 from scipy.stats import bayes_mvs
@@ -472,6 +470,7 @@ def calc_normcut_scores(z_matrix, adjacency_matrix):
 
 def param_plot(model, include_burn_in=False):
     import matplotlib.pyplot as plt
+    import seaborn as sb
     params = model.chains[0].infer_params
     for param in params:
         plt.figure()
@@ -497,6 +496,7 @@ def param_plot(model, include_burn_in=False):
 
 def cluster_plot(X, z_vector=None, ground_truth=None, colorbar=False, title='Adjacency matrix'):
     import matplotlib.pyplot as plt
+    from mpl_toolkits.axes_grid1 import make_axes_locatable
     if isinstance(X, Model):
         z_vector = X.get_best_chain().max_log_lik_z_
         X = X.args[0]
