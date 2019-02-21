@@ -43,7 +43,7 @@ def load_data(network='karate', labels=True, remove_disconnected=False, get_gml=
     #     print("The requested network could not be found")
     #     return None, None
     
-    filetype: str = 'mat' if network == 'karate' else 'gml'
+    filetype = 'mat' if network == 'karate' else 'gml'
     abs_file_path = os.path.join(ROOT_PATH, '{0}.{1}'.format(network, filetype))
 
     if file_checker('{0}.{1}'.format(network, filetype), abs_file_path, GITHUB_DATADIR) != 0:
