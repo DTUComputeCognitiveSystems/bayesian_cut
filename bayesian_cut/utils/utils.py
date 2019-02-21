@@ -10,7 +10,6 @@
 
 import collections
 from collections import defaultdict
-import matplotlib.pyplot as plt
 import naturalneighbor
 import numpy as np
 import plotly
@@ -351,6 +350,7 @@ def landscape_plotting_notebook(sim_matrix, log_prob_matrix, z_solutions=None, z
 
 
 def trace_plot(model, show_burn_in=False, model_names=None, title=None, legend=False):
+    import matplotlib.pyplot as plt
     plt.figure(figsize=(10, 6))
     color_list = ['b', 'r', 'g', 'c', 'm', 'k', 'y']
     if isinstance(model, list):
@@ -471,6 +471,7 @@ def calc_normcut_scores(z_matrix, adjacency_matrix):
 
 
 def param_plot(model, include_burn_in=False):
+    import matplotlib.pyplot as plt
     params = model.chains[0].infer_params
     for param in params:
         plt.figure()
@@ -495,6 +496,7 @@ def param_plot(model, include_burn_in=False):
 
 
 def cluster_plot(X, z_vector=None, ground_truth=None, colorbar=False, title='Adjacency matrix'):
+    import matplotlib.pyplot as plt
     if isinstance(X, Model):
         z_vector = X.get_best_chain().max_log_lik_z_
         X = X.args[0]
