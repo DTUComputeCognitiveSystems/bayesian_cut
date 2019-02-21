@@ -12,19 +12,15 @@ import collections
 from collections import defaultdict
 import matplotlib.pyplot as plt
 import naturalneighbor
-import networkx as nx
 import numpy as np
 import plotly
 import plotly.graph_objs as go
 import scipy.sparse as sp
 import seaborn as sb
 from joblib import Parallel, delayed
-from matplotlib import patches
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 from scipy.interpolate import griddata
-from scipy.io import loadmat
 from scipy.ndimage import gaussian_filter
-from scipy.sparse.csgraph import connected_components
 from scipy.stats import bayes_mvs
 from sklearn.manifold import MDS
 from sklearn.metrics import mutual_info_score, normalized_mutual_info_score
