@@ -2,10 +2,10 @@ Bayesian Cut Package
 ====================
 
 .. image:: https://img.shields.io/pypi/v/bayesian_cut.svg
-    :target: https://pypi.python.org/pypi/mbpls
+    :target: https://pypi.python.org/pypi/bayesian_cut
     :alt: Pypi Version
 .. image:: https://img.shields.io/pypi/l/bayesian_cut.svg
-    :target: https://pypi.python.org/pypi/mbpls/
+    :target: https://pypi.python.org/pypi/bayesian_cut
     :alt: License
 .. image:: https://travis-ci.com/DTUComputeCognitiveSystems/bayesian_cut.svg?branch=master
    :target: https://travis-ci.com/DTUComputeCognitiveSystems/bayesian_cut
