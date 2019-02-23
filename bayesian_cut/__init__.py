@@ -27,4 +27,4 @@ from . import utils, data, cuts
 
 __all__ = ["cuts", "data", "utils"]
 
-__version__ = "0.0.2-beta"
+__version__ = "0.1.0-beta"
