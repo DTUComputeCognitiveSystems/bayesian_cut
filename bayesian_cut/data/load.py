@@ -88,14 +88,18 @@ def load_data(network='karate', labels=True, remove_disconnected=False, get_gml=
         if labels:
             # Second load the label vector
             try:
-                filetype = glob.glob(os.path.join(ROOT_PATH, network) + '_labels' + '.*')[0].split('.')[1]
-                if filetype == 'txt':
-                    Y = np.loadtxt(os.path.join(ROOT_PATH, network) + '_labels.' + filetype)
+                filetype = 'txt'
+                abs_file_path = os.path.join(ROOT_PATH, network) + '_labels.' + filetype
+                print(abs_file_path)
+                if file_checker('{0}_labels.{1}'.format(network, filetype), abs_file_path, GITHUB_DATADIR) != 0:
+                    print('File {0}_labels.{1} was not available and could not be downloaded'.format(network,
+                                                                                                     filetype))
+                    print("Could not find a labels file for this network, None will be returned")
+                else:
+                    Y = np.loadtxt(abs_file_path)
                     # Remove the nodes from Y that were removed from X
                     if remove_disconnected:
                         Y = Y[cc_idx]
-                else:
-                    print("This filetype of the labels object has not been implemented yet.")
             except:
                 print("Could not find a labels file for this network, None will be returned")
 
