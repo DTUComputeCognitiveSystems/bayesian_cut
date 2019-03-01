@@ -88,6 +88,6 @@ Use the bayesian_cut package for performing graph cuts
 
    # Plot the cut as an adjacency matrix
    from bayesian_cut.utils import utils
-   utils.Cluster_plot(BC)
+   utils.cluster_plot(BC)
 
    # Done
