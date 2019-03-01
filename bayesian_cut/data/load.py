@@ -21,20 +21,46 @@ import sys
 GITHUB_DATADIR = 'https://github.com/DTUComputeCognitiveSystems/bayesian_cut/raw/master/bayesian_cut/data'
 
 
-def load_data(network='karate', labels=True, remove_disconnected=False, get_gml=False):
+def load_data(network='karate', labels=True, remove_disconnected=False, get_gml=False, dir_path=None):
     """
     This function load the requested network as sparse scipy matrix and returns it together
     with the cluster labels, if these were requested
-    :param network: The name of the network
-    :param labels: Load labels for network (only if available)
-    :param remove_disconnected: Bool: Whether disconnected components should be removed
-    :param keep_gml: Bool: Whether loaded gml networks should also be returned as gml networks
-    :return: (if keep_gml==False) Scipy sparse csr matrix of the network, Numpy array of the labels (None if not requested)
-    :return: (if keep_gml==True) Adjusted gml network
+
+    Parameters
+    ----------
+    network: string, optional, default = 'karate'
+        The 'basename' of the network without filetype. The module automatically looks for .gml, .txt and .mat files
+        with that basename. In case labels are requested, .gml files are expected to store these implicitly. For .mat
+        and .txt the labels are expected to be stored in a (basename)_labels.txt file.
+    labels : boolean, optional, default = True
+        Load labels for network (only if available)
+    remove_disconnected : boolean, optional, default = False
+        Whether disconnected components should be removed. The largest connected part of the network will be kept.
+    keep_gml : boolean, optional, default = False
+        Whether loaded the loaded network should be returned as NetworkX object.
+    dir_path : string, optional, default = None
+        Explicit directory path where the data is stored. The path can be absolute or relative.
+        Examples:
+            - '' : Current working directory will be used
+            - 'Desktop' : Current working directory + /Desktop will be used
+            - './Desktop' : Current working directory + /Desktop will be used
+            - '/home' : /home will be used (absolute directory)
+        If no path is given, the data will be stored in the package
+        source path.
+
+    Returns
+    -------
+    X/G : Scipy sparse csr matrix of the network (if keep_gml==False) / NetworkX gml object (if keep_gml==True)
+        Adjaceny matrix of the network
+    Y : Numpy array (if labels = True), default: None
+        Array of class labels for each node
     """
     # First load the adjacency matrix
     global cc_idx
-    ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
+    if dir_path is not None:
+        ROOT_PATH = os.path.abspath(dir_path)
+    else:
+        ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
     Y = None
 
     # try:
@@ -126,7 +152,12 @@ def file_checker(file, abs_file_path, github_dir):
         try:
             urlretrieve(url, abs_file_path, reporthook)
         except:
-            print("The file could not be downloaded. Please check your internet connection.")
+            if os.access(abs_file_path, os.W_OK):
+                print("The file could not be downloaded. Please check your internet connection.")
+            else:
+                print("You don't have write permissions for the directory {}\n"
+                      "Please specify the dir_path='your_path' parameter of the load_data function with a directory\n"
+                      "you have write permissions for.".format(os.path.dirname(abs_file_path)))
             return 1
     return 0
 
